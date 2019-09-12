@@ -14,16 +14,18 @@ namespace MyShop.WebUI.Controllers
         IRepository<Product> context;
         IRepository<ProductCategory> productCategories;
 
+        public IEnumerable<ProductCategory> Categories { get; private set; }
+
         public HomeController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext)
         {
             context = productContext;
             productCategories = productCategoryContext;
         }
 
-        public ActionResult Index(string Category=null)
+        public ActionResult Index(string Category = null)
         {
             List<Product> products;
-            List<ProductCategory> Categories = productCategories.Collection().ToList();
+            List<ProductCategory> categories = productCategories.Collection().ToList();
 
             if (Category == null)
             {
@@ -36,7 +38,7 @@ namespace MyShop.WebUI.Controllers
 
             ProductListViewModel model = new ProductListViewModel();
             model.Products = products;
-            model.ProductCategories = Categories;
+            model.ProductCategories = categories;
 
             return View(model);
         }

@@ -61,7 +61,7 @@ namespace MyShop.Services
 
             HttpCookie cookie = new HttpCookie(BasketSessionName);
             cookie.Value = basket.Id;
-            cookie.Expires = DateTime.Now.AddDays(5);
+            cookie.Expires = DateTime.Now.AddDays(1);
             httpContext.Response.Cookies.Add(cookie);
 
             return basket;
